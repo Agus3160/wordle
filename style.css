@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap');
+
+/* CONTENEDORES PRINCIPALES */
+body {
+    font-family: 'Work Sans', sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    background-color: #3c395e;
+    height: 100vh;
+}
+
+.main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 80%;
+    min-height: 100%;
+}
+
+/* CONTENEDOR DE INPUTS DEL USUARIO: */
+.input-container{
+    margin-top: auto;
+    width: 100%;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 240px;
+}
+
+h1{
+    text-align: center;
+    color: aliceblue;
+}
+#guess-input{
+    width: 30%;
+    padding: 12px;
+    border-radius: 4px;
+    border: none;
+}
+
+.main-button-style{
+    background-color: #78689e;
+    color: aliceblue;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    width: min-content;
+}
+
+.main-button-style:active{
+    background-color: #c69ae9;
+    color: black;
+}
+.main-button-style:hover{
+    box-shadow: #f8cbed7e 0px 2px 8px 0px;
+}
+.main-button-style:disabled{
+    background-color: rgba(198, 154, 233, 0.43);
+    color: rgba(196, 196, 196, 0.375);
+}
+
+button:disabled:hover{
+    box-shadow: none;
+}
+
+input:focus, button:focus{
+    outline: none;
+    box-shadow: #f8cbed7e 0px 2px 8px 0px;
+}
+
+/* CONTENEDOR DE FILAS DE CELDAS DE LA PALABRA: */
+.row-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 4px 0;
+}
+
+.row{
+    width: 100%;
+    margin: 12px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.letter{
+    text-align: center;
+    width: 12px;
+    height: 12px;
+    padding: 12px;
+    border-radius: 4px;
+    margin: 0 4px;
+    color:aliceblue;
+    font-size: small;
+}
+
+/* CONTENEDOR DE OPCIONES: */
+.options-container{
+    margin-top: auto;
+    padding: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+/* CLASES DEL CONTENEDOR DE MENSAJES: */
+#message-div{
+    margin: auto;
+}
+
+.message-div-error{
+    background-color: rgb(176, 42, 32);
+    border: 2px solid rgb(212, 17, 72);
+    padding: 4px;
+    border-radius: 12px;
+    color: rgb(238, 150, 150);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.message-div-error p{
+    font-size:xx-small;
+    margin: 4px;
+}
+.message-div-error img{
+    width: 16px;
+    border: none;
+    border-radius: 25%;
+}
+.message-div-error img:hover{
+    cursor: pointer;
+}
+
+/* ANIMATION */
+.win-animation{
+    background-image: linear-gradient(#3c395e 50%, green);
+    animation: wave 3s ease-in-out infinite;
+    background-size: 100% 200%;
+}
+
+.win-animation h2{
+    color: green;
+    text-shadow: 2px 2px 2px #000000;
+}
+
+.lost-animation{
+    background-image: linear-gradient(#3c395e 50%, rgb(185, 23, 34));
+    animation: wave 3s ease-in-out infinite;
+    background-size: 100% 200%;
+}
+
+.lost-animation h2{
+    color: rgb(185, 23, 34);
+    text-shadow: 2px 2px 2px #000000;
+}
+
+@keyframes wave {
+    0%{
+        background-position:0% 25%;     
+    }
+    50%{
+        background-position: 0% 60%;
+    }
+    100%{
+        background-position:0% 25%;
+    }
+}
+
+@media (max-width: 500px) {
+    #guess-input{
+        width: 80%;
+    }
+    .letter{
+        width: auto;
+        height: auto;
+        padding: 10px;
+    }
+    .lost-animation{
+        background-size: 100% 650%;
+    }
+    .win-animation{
+        background-size: 100% 650%;
+    }
+  }
