@@ -1,7 +1,9 @@
 let diccionario = ['APPLE', 'HURLS', 'WINGS', 'YOUTH', 'SPIDERMAN', 'COMIC', 'CURE', 'DESTRUCTION', 'CHAYANNE']
-const palabra = diccionario[Math.floor(Math.random() * diccionario.length)];
 
 /********************************* V A R I A B L E S **********************************************/
+//URL de la Api
+const UrlApi = 'https://random-word-api.herokuapp.com/word?length=5';
+
 //Guarda el elemento boton y se le carga la funcion de intentar, para poder jugar.
 const button = document.getElementById("guess-button");
 button.addEventListener("click", intentar);
@@ -23,8 +25,28 @@ let intentos = 4    //Los intentos que posse el usuario, son representados por l
 let fila = 0        //La fila en la cual se encuentra el usuario actualmente.
 
 /******************************* F U N C I O N E S **********************************************/
+
 //Permite cargar las filas en pantalla cuando la pagina es cargada totalmente
-window.onload = rellenarSpan(palabra)
+window.onload = ()=>{
+    //Se hace un Llamado a la API para obtener la palabra, caso contrario se notifica y se usa una del diccionario local
+    fetch(UrlApi)
+    .then(res => res.json())
+    .then(data => {
+        palabra = data[0].toUpperCase()
+        console.log(palabra)
+        rellenarSpan(palabra)
+    })
+    .catch(err => {
+        console.error('Hubo un error con el llamado de la API')
+        console.error(err)
+        palabra = diccionario[Math.floor(Math.random() * diccionario.length)].toUpperCase()
+        rellenarSpan(palabra)
+    })
+
+}
+
+
+
 function rellenarSpan(palabra){
     const GRID = document.getElementById("grid"); //Se accede al div Grid
     
